@@ -1,3 +1,5 @@
+<?php
+define('BASE_PATH', 'http://localhost:8040/fastburgers')
 <!DOCTYPE html>
 <html lang="en">
 <head>
