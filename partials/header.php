@@ -1,5 +1,6 @@
 <?php
-define('BASE_PATH', 'http://localhost:8040/fastburgers')
+//define('BASE_PATH', 'http://localhost:8040/fastburgers')
+define('BASE_PATH', 'http://localhost:8010/fastburgers')
 <!DOCTYPE html>
 <html lang="en">
 <head>
