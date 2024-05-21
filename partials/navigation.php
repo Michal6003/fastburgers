@@ -1,10 +1,10 @@
 <nav
-      class="bg-white dark:bg-black dark:text-white flex flex-col md:flex-row items-center md:justify-between px-6 py-4 border-b border-b-gray-60 shadow-sm max-w-screen-2xl mx-auto"
+      class=" bg-green-600 dark:bg-black dark:text-white flex flex-col md:flex-row items-center md:justify-between px-6 py-4 border-b border-b-gray-60 shadow-sm max-w-screen-2xl mx-auto"
     >
       <!-- Logo -->
       <div>
         <h2 class="text-3xl font-bold">
-          <a>My <span class="text-blue-600">B</span>rand</a>
+        <img class="block h-12 w-auto" src="<?= BASE_PATH ?>assets/FastBurgersLogo.png" alt="Logo">
         </h2>
       </div>
       <!-- /End Logo -->
@@ -13,33 +13,22 @@
           <li>
             <a
               class="font-semibold tracking-tight block cursor-pointer p-2 hover:text-blue-500 transition-colors duration-300"
-              >Products</a
+              >Customer</a
             >
           </li>
           <li>
             <a
               class="font-semibold tracking-tight block cursor-pointer p-2 hover:text-blue-500 transition-colors duration-300"
-              >Company</a
+              >Staff</a
             >
           </li>
           <li>
             <a
               class="font-semibold tracking-tight block cursor-pointer p-2 hover:text-blue-500 transition-colors duration-300"
-              >Partners</a
+              >More Info</a
             >
           </li>
-          <li>
-            <a
-              class="font-semibold tracking-tight block cursor-pointer p-2 hover:text-blue-500 transition-colors duration-300"
-              >News</a
-            >
-          </li>
-          <li>
-            <a
-              class="font-semibold tracking-tight block cursor-pointer p-2 hover:text-blue-500 transition-colors duration-300"
-              >Contact Us</a
-            >
-          </li>
+         
         </ul>
       </div>
     </nav>
