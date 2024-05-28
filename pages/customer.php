@@ -4,6 +4,7 @@ include '../partials/header.php';
 include '../partials/navigation.php';
 
 $order = $conn ->prepare("SELECT
+o.order_id,
 c.customer_name, 
 r.regular_menu_type,
 p.payment_type
@@ -16,7 +17,7 @@ INNER JOIN payment p ON o.fk_payment_id = p.payment_ID
 ");
 $order->execute();
 $order->store_result();
-$order->bind_result($cname, $menu_type, $payment);
+$order->bind_result($oid, $cname, $menu_type, $payment);
 
 ?>
 
@@ -32,7 +33,7 @@ $order->bind_result($cname, $menu_type, $payment);
          
             <tr>
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                
+                order id 
               </th>
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 FirstName
@@ -41,10 +42,10 @@ $order->bind_result($cname, $menu_type, $payment);
                 LastName 
               </th>
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                order
+                payment
               </th>
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                payment
+                Order details
               </th>
             </tr>
             
@@ -52,7 +53,9 @@ $order->bind_result($cname, $menu_type, $payment);
           <?php while($order->fetch()) : ?>
           <tbody>
             <tr class="bg-gray-100 border-b">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"></td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                <?=$oid ?>
+              </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                 <?= $cname ?>
               </td>
@@ -60,59 +63,13 @@ $order->bind_result($cname, $menu_type, $payment);
                 <?= $menu_type ?>
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                
+              <?= $payment ?>
               </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                <?= $payment ?>
-              </td>
+              
+              <td onclick="window.location.href='orderDetails/<?= $oid ?>'"><i class="fa-solid fa-eye"></i></td>
+              
             </tr>
             <?php endwhile ?>
-            <tr class="bg-white border-b">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2</td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                
-              </td>
-            </tr>
-            <tr class="bg-gray-100 border-b">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">3</td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                
-              </td>
-            </tr>    
-            <tr class="bg-white border-b">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">4</td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-            
-              </td>
-            </tr>
-            <tr class="bg-gray-100 border-b">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">5</td>
-              <td colspan="2" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
-                
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                
-              </td>
-            </tr>
-            
           </tbody>
         </table>
       </div>
