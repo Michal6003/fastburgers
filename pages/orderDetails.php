@@ -36,6 +36,7 @@ $orderDetails->fetch();
 <link rel="stylesheet" href="https://cdn.tailgrids.com/tailgrids-fallback.css" />
 <!-- I can now just call the variable created in the bind_result -->
 <!-- the details that I have called is just some of the data that is required -->
+<div class ="h-screen bg-yellow-600 rounded-lg"> 
 <div class="flex w-full justify-center mt-20">
     <div class="flex flex-col w-1/4 mb-20">
         <h2 class="text-xl underline">Customer Details</h2>

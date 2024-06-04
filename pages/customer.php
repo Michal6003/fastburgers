@@ -23,11 +23,11 @@ $order->bind_result($oid, $cname, $menu_type, $payment);
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-<div class ="bg-yellow-600"> 
+<div class ="h-screen bg-yellow-600 rounded-lg"> 
 <div class="flex flex-col">
   <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
     <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-      <div class="overflow-hidden">
+      <div class="overflow-hidden rounded-lg m-5 flex-col h-[80%] justify-center">
         <table class="min-w-full">
    
           <thead class="bg-white border-b">
