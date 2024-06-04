@@ -20,6 +20,7 @@ RewriteBase /fastburgers/
 RewriteRule ^index$ pages/index.php [L]
 RewriteRule ^customer$ pages/customer.php [L]
 RewriteRule ^staff$ pages/staff.php [L]
+RewriteRule ^moreinfo$ pages/moreinfo.php [L]
 
 RewriteRule ^orderDetails/([0-9]+)$ pages/orderDetails.php?oid=$1 [L]
 

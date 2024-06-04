@@ -11,24 +11,16 @@
       <div class="mt-5 md:mt-0">
         <ul class="flex flex-col md:flex-row md:space-x-5 w-full items-center">
           <li>
-            <a
-              class="font-semibold tracking-tight block cursor-pointer p-2 hover:text-blue-500 transition-colors duration-300"
-              >Customer</a
-              
-            >
+            <a href="<?= BASE_PATH ?>customer" class="font-semibold tracking-tight block cursor-pointer p-2 hover:text-blue-500 transition-colors duration-300" >Customer</a>
           </li>
           <li>
-            <a
-              class="font-semibold tracking-tight block cursor-pointer p-2 hover:text-blue-500 transition-colors duration-300"
-              >Staff</a
-            >
+          <a href="<?= BASE_PATH ?>staff" class="font-semibold tracking-tight block cursor-pointer p-2 hover:text-blue-500 transition-colors duration-300" >Staff</a>
           </li>
+          
           <li>
-            <a
-              class="font-semibold tracking-tight block cursor-pointer p-2 hover:text-blue-500 transition-colors duration-300"
-              >More Info</a
-            >
+          <a href="<?= BASE_PATH ?>moreinfo" class="font-semibold tracking-tight block cursor-pointer p-2 hover:text-blue-500 transition-colors duration-300" >More Info</a>
           </li>
+          
          
         </ul>
       </div>

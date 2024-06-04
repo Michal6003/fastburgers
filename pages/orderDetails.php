@@ -11,7 +11,7 @@ o.order_id,
 o.order_date,
 c.customer_name,
 c.customer_tel,
-st.store_name,
+st.store_location,
 p.payment_type,
 r.regular_menu_type,
 s.staff_firstname

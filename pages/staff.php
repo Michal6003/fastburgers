@@ -5,19 +5,18 @@ include '../partials/header.php';
 include '../partials/navigation.php';
 
 $order = $conn ->prepare("SELECT
+s.staff_id,
 s.staff_firstname, 
 s.staff_surname,
 s.staff_role,
-st.store_location
-from `orders` o 
-INNER JOIN staff s ON o.fk_staff_id = s.staff_ID
-INNER JOIN store st ON o.fk_store_id = st.store_ID
+s.shift
+from `staff` s 
 
 
 ");
 $order->execute();
 $order->store_result();
-$order->bind_result($sname, $ssurname, $srole, $sloc);
+$order->bind_result($sId, $sname, $ssurname, $srole, $shift);
 
 ?>
 
@@ -33,7 +32,7 @@ $order->bind_result($sname, $ssurname, $srole, $sloc);
          
             <tr>
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                
+                id
               </th>
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 FirstName
@@ -42,13 +41,10 @@ $order->bind_result($sname, $ssurname, $srole, $sloc);
                 LastName 
               </th>
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                order
+                Role 
               </th>
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                payment
-              </th>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                Location
+                Shift
               </th>
             </tr>
             
@@ -56,7 +52,7 @@ $order->bind_result($sname, $ssurname, $srole, $sloc);
           <?php while($order->fetch()) : ?>
           <tbody>
             <tr class="bg-gray-100 border-b">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"></td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><?= $sId ?></td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                 <?= $sname ?>
               </td>
@@ -64,57 +60,16 @@ $order->bind_result($sname, $ssurname, $srole, $sloc);
                 <?= $ssurname ?>
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                
+              <?= $srole ?>
               </td>
+
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                <?= $srole ?>
+              <?= $shift ?>
               </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                <?= $sloc?>
-              </td>
+              
             </tr>
             <?php endwhile ?>
-            <tr class="bg-white border-b">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2</td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                
-              </td>
-            </tr>
-            <tr class="bg-gray-100 border-b">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">3</td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                
-              </td>
-            </tr>    
-            <tr class="bg-white border-b">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">4</td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-            
-              </td>
-            </tr>
-            <tr class="bg-gray-100 border-b">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">5</td>
-              <td colspan="2" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
-                
-              </td>
+           
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                 
               </td>
