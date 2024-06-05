@@ -4,8 +4,9 @@ include '../partials/header.php';
 include '../partials/navigation.php';
 ?>
 
-<div class="relative py-16 bg-gradient-to-br bg-yellow-500">  
-    <div class="relative container m-auto px-6 text-gray-500 md:px-12 xl:px-40">
+
+<div class ="h-screen bg-yellow-600 rounded-lg"> 
+    <div class="container mx-auto p-4 text-gray-500 md:flex md:space-x-4">
         <div class="m-auto md:w-8/12 lg:w-6/12 xl:w-6/12">
             <div class="rounded-xl bg-white shadow-xl">
                 <div class="p-6 sm:p-16">

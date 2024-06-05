@@ -41,12 +41,13 @@ $popularLocation->fetch();
 ?>
 
 
-<div class ="h-screen bg-yellow-600 rounded-lg"> 
+<div class="min-h-screen bg-yellow-600 rounded-lg flex flex-col">
 <div>
-  <h3 class="text-base font-semibold leading-6 text-gray-900">Last 30 days</h3>
- 
+<h3 class="text-base font-semibold leading-6 text-gray-900">Last 30 days</h3>
+
   <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-    <div class="relative overflow-hidden rounded-lg bg-gray-600 px-4 pb-12 pt-5 shadow sm:px-6 sm:pt-6">
+   <div class="relative overflow-hidden rounded-lg bg-gray-600 px-4 pb-12 pt-5 shadow sm:px-6 sm:pt-6">
+
       <dt>
         
         <p class="ml-16 truncate text-sm font-medium text-gray-300">Order Count</p>

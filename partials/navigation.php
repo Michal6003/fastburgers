@@ -1,10 +1,11 @@
 <nav
-      class=" bg-green-600 dark:bg-black dark:text-white flex flex-col md:flex-row items-center md:justify-between px-6 py-4 border-b border-b-gray-60 shadow-sm max-w-screen-2xl mx-auto"
+      class=" bg-green-600 dark:text-white flex flex-col md:flex-row items-center md:justify-between px-6 py-4 border-b border-b-gray-60 shadow-sm max-w-screen-2xl mx-auto"
     >
       <!-- Logo -->
       <div>
         <h2 class="text-3xl font-bold">
-        <img class="block h-12 w-auto" src="<?= BASE_PATH ?>assets/FastBurgersLogo.png" alt="Logo">
+        <img class="block lg:hidden h-12 w-auto" src="<?= BASE_PATH ?>/assets/FastBurgersLogo.png" alt="Logo">
+        <img class="hidden lg:block h-12 w-auto" src="<?= BASE_PATH ?>/assets/FastBurgersLogo.png" alt="Logo">
         </h2>
       </div>
       <!-- /End Logo -->
