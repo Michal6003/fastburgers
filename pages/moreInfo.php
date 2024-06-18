@@ -14,11 +14,12 @@ $totalOrders->bind_result($orders);
 $totalOrders->fetch();
 
 $popularPayment = $conn ->prepare("SELECT 
-count(p.payment_ID),
+count(o.fk_payment_id),
 p.payment_type
 from `orders` o
 INNER JOIN payment p ON o.fk_payment_id = p.payment_ID
-order by payment_ID desc
+group by p.payment_type
+order by count(o.fk_payment_id) desc
 limit 1;
 ");
 $popularPayment->execute();
@@ -26,19 +27,40 @@ $popularPayment->store_result();
 $popularPayment->bind_result($payid, $pay);
 $popularPayment->fetch();
 
+
 $popularLocation = $conn ->prepare("SELECT 
-count(sl.store_ID),
-sl.store_location
+sl.store_location,
+count(o.order_id)
 from `orders` o
 INNER JOIN store sl ON o.fk_store_id = sl.store_ID
-order by store_ID desc
+group by sl.store_location
+order by count(o.order_id) desc
 limit 1;
 ");
 $popularLocation->execute();
 $popularLocation->store_result();
-$popularLocation->bind_result($storeid, $loc);
+$popularLocation->bind_result($loc, $storeid);
 $popularLocation->fetch();
+
+
+$MostOrders = $conn ->prepare("SELECT 
+count(o.fk_staff_id),
+s.staff_firstname
+from `orders` o
+INNER JOIN staff s ON o.fk_staff_id = s.staff_ID
+group by s.staff_firstname 
+order by count(o.fk_staff_id) desc
+limit 1;
+");
+$MostOrders->execute();
+$MostOrders->store_result();
+$MostOrders->bind_result($staffid, $sname);
+$MostOrders->fetch();
+
+
 ?>
+
+
 
 
 <div class="min-h-screen bg-yellow-600 rounded-lg flex flex-col">
@@ -82,6 +104,21 @@ $popularLocation->fetch();
       <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
         <p class="text-2xl font-semibold text-gray-100"><?=$loc?></p>
         <p class="ml-2 flex items-baseline text-sm font-semibold text-red-600">
+         
+        <div class="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
+         
+        </div>
+      </dd>
+    </div>
+    <div class="relative overflow-hidden rounded-lg bg-gray-600 px-4 pb-12 pt-5 shadow sm:px-6 sm:pt-6">
+      <dt>
+        <p class="ml-16 truncate text-sm font-medium text-gray-300">Staff who took most orders</p>
+      </dt>
+      <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
+        <p class="text-2xl font-semibold text-gray-100"><?=$sname?>,</p>
+        
+        <p class="ml-2 flex items-baseline text-sm font-semibold text-red-600">
+        <p class="text-2xl font-semibold text-gray-100">orders taken <?=$staffid?></p>
          
         <div class="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
          
