@@ -57,6 +57,35 @@ $MostOrders->store_result();
 $MostOrders->bind_result($staffid, $sname);
 $MostOrders->fetch();
 
+$MostMenuType = $conn ->prepare("SELECT 
+count(o.fk_menu_type_id),
+rm.regular_menu_meal_type,
+rm.regular_menu_type
+from `orders` o
+INNER JOIN menu_type mt ON o.fk_menu_type_id = mt.menu_type_id
+INNER JOIN regular_menu rm ON mt.fk_regular_menu_id = rm.regular_menu_ID
+group by rm.regular_menu_meal_type, rm.regular_menu_type 
+order by count(o.fk_menu_type_id) desc
+limit 1;
+");
+$MostMenuType->execute();
+$MostMenuType->store_result();
+$MostMenuType->bind_result($menuid, $mtypemeal, $mtype);
+$MostMenuType->fetch();
+
+$Mostitem = $conn ->prepare("SELECT 
+count(ot.fk_item_id),
+it.item_name
+from `order_items` ot
+INNER JOIN item it ON ot.fk_item_id = it.item_ID
+group by it.item_name
+order by count(ot.fk_item_id) desc
+limit 1;
+");
+$Mostitem->execute();
+$Mostitem->store_result();
+$Mostitem->bind_result($itemid, $item);
+$Mostitem->fetch();
 
 ?>
 
@@ -119,6 +148,36 @@ $MostOrders->fetch();
         
         <p class="ml-2 flex items-baseline text-sm font-semibold text-red-600">
         <p class="text-2xl font-semibold text-gray-100">orders taken <?=$staffid?></p>
+         
+        <div class="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
+         
+        </div>
+      </dd>
+    </div>
+    <div class="relative overflow-hidden rounded-lg bg-gray-600 px-4 pb-12 pt-5 shadow sm:px-6 sm:pt-6">
+      <dt>
+        <p class="ml-16 truncate text-sm font-medium text-gray-300">Popular menu type</p>
+      </dt>
+      <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
+        <p class="text-2xl font-semibold text-gray-100"><?=$mtypemeal?>,</p>
+        
+        <p class="ml-2 flex items-baseline text-sm font-semibold text-red-600">
+        <p class="text-2xl font-semibold text-gray-100"><?=$mtype?></p>
+         
+        <div class="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
+         
+        </div>
+      </dd>
+    </div>
+    <div class="relative overflow-hidden rounded-lg bg-gray-600 px-4 pb-12 pt-5 shadow sm:px-6 sm:pt-6">
+      <dt>
+        <p class="ml-16 truncate text-sm font-medium text-gray-300">popular item</p>
+      </dt>
+      <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
+        <p class="text-2xl font-semibold text-gray-100"><?=$item?></p>
+        
+        <p class="ml-2 flex items-baseline text-sm font-semibold text-red-600">
+
          
         <div class="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
          

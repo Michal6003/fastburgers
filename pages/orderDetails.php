@@ -14,11 +14,14 @@ c.customer_tel,
 st.store_location,
 p.payment_type,
 r.regular_menu_type,
-s.staff_firstname
- from `orders` o
+s.staff_firstname,
+i.item_name
+ from `order_items` it
+ LEFT JOIN orders o ON it.fk_order_id = o.order_ID
  LEFT JOIN customer c ON o.fk_customer_id = c.customer_id
  LEFT JOIN menu_type m ON o.fk_menu_type_id = m.menu_type_id
  LEFT JOIN regular_menu r ON m.fk_regular_menu_id = r.regular_menu_ID
+ LEFT JOIN item i ON it.fk_item_id = i.item_ID 
  LEFT JOIN payment p ON o.fk_payment_id = p.payment_id
  LEFT JOIN staff s ON o.fk_staff_id = s.staff_id
 
@@ -27,7 +30,7 @@ s.staff_firstname
 ");
 $orderDetails->execute();
 $orderDetails->store_result();
-$orderDetails->bind_result($oid, $date, $customer, $custTel, $store, $payment_type, $menu, $staff);
+$orderDetails->bind_result($oid, $date, $customer, $custTel, $store, $payment_type, $menu, $staff, $item);
 // On the orders page we called the fetch() function in a while statements as I wanted ot call all rows
 // I now only want details of one order, so we use the fetch() function at this stage.
 $orderDetails->fetch();
@@ -46,9 +49,11 @@ $orderDetails->fetch();
     <div class="flex flex-col w-1/4">
         <h2 class="text-xl underline">Order Details</h2>
         <p><span class="text-slate-600">Order Number: </span> <?= $oid ?></p>
+        <p> <span class="text-slate-600">staff Memeber who took the order: </span> <?= $staff ?></p>
         <p> <span class="text-slate-600">Order Date: </span> <?= $date ?></p>
         <p> <span class="text-slate-600">Payment Type: </span> <?= $payment_type ?></p>
         <p> <span class="text-slate-600">Menu Type: </span> <?= $menu ?></p>
+        <p> <span class="text-slate-600">Menu Type: </span> <?= $item ?></p>
     </div>
     <div class="flex flex-col w-1/4">
         <h2 class="text-xl underline">Store Details</h2>
